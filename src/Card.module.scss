@@ -1,0 +1,28 @@
+.item {
+  position: relative;
+
+  border: 1px solid #e0a85e52;
+  padding: 30px;
+  margin: 15px;
+  width: 210px;
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+    transform: translateY(-5px);
+  }
+
+  strong {
+    color: white;
+  }
+
+  p {
+    margin: 5px;
+    color: wheat;
+
+    b {
+      color: wheat;
+    }
+  }
+}
