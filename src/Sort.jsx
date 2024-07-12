@@ -1,26 +1,18 @@
 import React from "react";
 import styles from "./Sort.module.scss";
 
-export const Sort = ({ items, value, onClickSort, open, setOpen }) => {
-const [active, setActive] = React.useState(false)
-
+export const Sort = ({ value, onClickSort, open, setOpen }) => {
   const list = [
-    { title: "По алфавиту", sort: "name" },
-    { title: "По цене (ниже)", sort: "price" },
-    { title: "По цене (выше)", sort: "price" },
-    { title: "По году выпуска(сначала новые)", sort: "year" },
-    { title: "По году выпуска(сначала старые)", sort: "year" },
+    { title: "По цене (ниже)", sort: "priceMin" },
+    { title: "По цене (выше)", sort: "priceMax" },
+    { title: "По году выпуска(сначала новые)", sort: "yearMax" },
+    { title: "По году выпуска(сначала старые)", sort: "yearMin" },
   ];
 
   const onSortItems = (obj) => {
     onClickSort(obj);
     setOpen(!open);
   };
-
-  const onSelected = () => {
-    setActive(!active)
-
-  }
 
   return (
     <div className={styles.sort}>
@@ -32,9 +24,10 @@ const [active, setActive] = React.useState(false)
       >
         <ul>
           {list.map((obj, i) => (
-            <li key={i} onClick={onSortItems} 
-            className={value.sort === obj.sort ? 'active' : ''}
-            // className={() => onSelected}
+            <li
+              key={i}
+              onClick={() => onSortItems(obj)}
+              className={value.sort === obj.sort ? "active" : ""}
             >
               {obj.title}
             </li>

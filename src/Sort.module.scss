@@ -34,7 +34,7 @@
         background: rgba(254, 95, 30, 0.05);
       }
 
-      &.active {
+      &:active {
         font-weight: bold;
         color: red;
       }

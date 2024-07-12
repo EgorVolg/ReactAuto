@@ -26,11 +26,30 @@ export const App = () => {
     setSearchValue(e.target.value);
   };
 
+  const sortItems = (a, b) => {
+
+    if (sortId.sort === "priceMin") {
+      return a.price - b.price;
+    }
+
+    if (sortId.sort === "priceMax") {
+      return b.price - a.price;
+    }
+
+    if (sortId.sort === "yearMin") {
+      return a.year - b.year;
+    }
+
+    if (sortId.sort === "yearMax") {
+      return b.year - a.year;
+    }
+  };
+
   return (
     <div className="App">
       <body className={styles.body}>
         <CardList
-          items={items}
+          items={items.sort(sortItems)}
           searchValue={searchValue}
           onSearch={onSearch}
           sortId={sortId}
