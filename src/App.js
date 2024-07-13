@@ -1,19 +1,19 @@
 import React from "react";
 import styles from "./App.module.scss";
 import axios from "axios";
-import { CardList } from "./CardList";
+import { CardList } from "./components/CardList/CardList";
 
 export const App = () => {
   const [items, setItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
   const [sortId, setSortId] = React.useState({
-    name: "По цене (ниже)",
+    name: "По стоимости (ниже)",
     sort: "price",
   });
+  const [formVisible, setFormVisible] = React.useState(false);
 
   React.useEffect(() => {
     async function fetchData() {
-      //............................................... Items ...............................................
       const itemsResponce = await axios.get(
         "https://test.tspb.su/test-task/vehicles"
       );
@@ -22,12 +22,23 @@ export const App = () => {
     fetchData();
   }, []);
 
+  // const onAddToCard = (obj) => {
+  //   return setItems((prev) => [...prev, obj]);
+  // };
+
+  const onRemoveCard = (id) => {
+    return setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
   const onSearch = (e) => {
     setSearchValue(e.target.value);
   };
 
-  const sortItems = (a, b) => {
+  const onVisible = () => {
+    setFormVisible(!formVisible);
+  };
 
+  const sortItems = (a, b) => {
     if (sortId.sort === "priceMin") {
       return a.price - b.price;
     }
@@ -54,6 +65,10 @@ export const App = () => {
           onSearch={onSearch}
           sortId={sortId}
           setSortId={setSortId}
+          onVisible={onVisible}
+          formVisible={formVisible}
+          setFormVisible={setFormVisible}
+          onRemoveCard={onRemoveCard}
         />
       </body>
     </div>

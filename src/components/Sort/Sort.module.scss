@@ -1,0 +1,50 @@
+.sort {
+  display: flex;
+  justify-content: flex-start;
+  height: 1vh;
+   cursor: pointer;
+  margin: 10%;
+
+  span {
+    margin-right: 8px;
+    color: wheat;
+    border-bottom: 1px dashed wheat;
+  }
+
+  .sort_pop {
+    display: flex;
+    background-color: #973131;
+    border-radius: 15px;
+    min-width: 200px;
+    position: absolute;
+    z-index: 90;
+    ul {
+      all: unset;
+      display: block;
+      position: absolute;
+      background-color: #973131;
+      border: 1px solid wheat;
+      border-top: none;
+      margin: 5px;
+    }
+
+    li {
+      all: unset;
+      cursor: pointer;
+
+      display: flex;
+      justify-content: flex-start;
+      padding: 5px;
+      transition: box-shadow 0.2s ease-in, transform 0.2s ease-in;
+
+      &.active,
+      &:hover {
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.164);
+      }
+
+      &:active {
+        font-weight: bold;
+      }
+    }
+  }
+}

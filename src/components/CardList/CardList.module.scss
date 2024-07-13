@@ -1,0 +1,56 @@
+.CardList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  color: wheat;
+  .search_block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px;
+
+    .search {
+      display: flex;
+      border-radius: 10px;
+      padding: 0 15px;
+      border: 1px solid wheat;
+
+      input {
+        all: unset;
+        padding: 13px;
+        font-size: 16px;
+        min-width: 150px;
+        width: 25vw;
+        color: wheat;
+      }
+    }
+  }
+  .content_items {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .addCardButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      cursor: pointer;
+      background-color: wheat;
+      border-radius: 5px;
+      padding: 5px;
+      border: .5px solid wheat;
+      transition: 0.25s ease-in-out;
+
+      &:hover{
+        border: .5px solid black;
+     }
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import React from "react";
-import { Card } from "./Card";
+import { Card } from "../Card/Card";
 import styles from "./CardList.module.scss";
-import { Sort } from "./Sort";
+import { Sort } from "../Sort/Sort";
+import { Form } from "../Form/Form";
 
 export const CardList = ({
   items,
@@ -9,6 +10,10 @@ export const CardList = ({
   onSearch,
   sortId,
   setSortId,
+  setFormVisible,
+  formVisible,
+  onVisible,
+  onRemoveCard,
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -19,6 +24,7 @@ export const CardList = ({
 
     return filterItems.map((item, index) => (
       <Card
+        onRemoveCard={() => onRemoveCard(item.id)}
         key={index}
         name={item.name}
         id={item.id}
@@ -27,6 +33,8 @@ export const CardList = ({
         color={item.color}
         price={item.price}
         {...items}
+        formVisible={formVisible}
+        onVisible={onVisible}
       />
     ));
   };
@@ -37,8 +45,16 @@ export const CardList = ({
         <div className={styles.search}>
           <img src="./search.svg" alt="search" />
           <input placeholder="Найти" onChange={onSearch} value={searchValue} />
+          {/* <div className={styles.addCardButton}>
+            <button onClick={onVisible}>Добавить авто</button>
+          </div> */}
         </div>
-
+        <Form
+          items={items}
+          onVisible={onVisible}
+          formVisible={formVisible}
+          setFormVisible={setFormVisible}
+        />
         <Sort
           open={open}
           setOpen={setOpen}
