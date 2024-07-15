@@ -5,19 +5,30 @@ export const Form = ({
   formState,
   setFormState,
   formVisible,
-  onClickVisible,
   onSettingCard,
   onClickItem,
   item,
 }) => {
-  const onClickX = () => {
-    onClickVisible(!formVisible);
-    onClickItem();
-  };
   const onSaveClick = (e) => {
-    onClickVisible(!formVisible);
     e.preventDefault();
-    return onSettingCard(item);
+    onClickItem(item);
+    onSettingCard(item);
+  };
+
+  const onChangeName = (e) => {
+    setFormState((prev) => {
+      return { ...prev, name: e.target.value };
+    });
+  };
+  const onChangeModel = (e) => {
+    setFormState((prev) => {
+      return { ...prev, model: e.target.value };
+    });
+  };
+  const onChangePrice = (e) => {
+    setFormState((prev) => {
+      return { ...prev, price: e.target.value };
+    });
   };
 
   return (
@@ -25,7 +36,7 @@ export const Form = ({
       className={styles.form}
       style={{ display: `${formVisible ? "block" : "none"}` }}
     >
-      <div className={styles.buttoncontainer} onClick={onClickX}>
+      <div className={styles.buttoncontainer} onClick={onSaveClick}>
         <svg
           width="25"
           height="25"
@@ -55,7 +66,7 @@ export const Form = ({
           <input
             placeholder={item.name}
             value={item.name}
-            onChange={(e) => setFormState(e.target.value)}
+            onChange={onChangeName}
           />
         </strong>
       </p>
@@ -64,7 +75,7 @@ export const Form = ({
         <input
           placeholder={item.model}
           value={item.model}
-          onChange={(e) => setFormState(e.target.value)}
+          onChange={onChangeModel}
         />
       </p>
       <div>
@@ -73,7 +84,7 @@ export const Form = ({
           <input
             placeholder={item.price}
             value={item.price}
-            onChange={(e) => setFormState(e.target.value)}
+            onChange={onChangePrice}
           />
         </p>
       </div>

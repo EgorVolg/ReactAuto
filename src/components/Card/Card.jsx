@@ -9,19 +9,14 @@ export const Card = ({
   color,
   price,
   onRemoveCard,
-  onClickVisible,
   onClickItem,
 }) => {
-  const openFormFunc = (item) => {
-    onClickItem(item)
-    onClickVisible(item)
-  }
   return (
     <div className={styles.item}>
       <div className={styles.buttoncontainer}>
         <div
           className={styles.settingCardSvg}
-          onClick={openFormFunc}
+          onClick={(item) => onClickItem(item)}
         >
           <svg
             width="25"

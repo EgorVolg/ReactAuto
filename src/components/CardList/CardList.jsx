@@ -23,12 +23,11 @@ export const CardList = ({
     price: "Стоимость",
   });
 
-  const onClickVisible = () => {
-    setFormVisible(!formVisible);
-  };
+
 
   const onClickItem = (item) => {
-    return setFormState(item);
+    setFormState(item);
+    setFormVisible(!formVisible);
   };
 
   const renderItems = () => {
@@ -38,7 +37,6 @@ export const CardList = ({
 
     return filterItems.map((item, index) => (
       <Card
-        onRemoveCard={() => onRemoveCard(item.id)}
         key={index}
         name={item.name}
         id={item.id}
@@ -46,10 +44,9 @@ export const CardList = ({
         year={item.year}
         color={item.color}
         price={item.price}
-        {...items}
         formVisible={formVisible}
-        onClickVisible={() => onClickVisible(item)}
         onClickItem={() => onClickItem(item)}
+        onRemoveCard={() => onRemoveCard(item.id)}
       />
     ));
   };
@@ -63,9 +60,7 @@ export const CardList = ({
         </div>
         <Form
           formVisible={formVisible}
-          setFormVisible={setFormVisible}
           item={formState}
-          onClickVisible={onClickVisible}
           formState={formState}
           setFormState={setFormState}
           onSettingCard={(item) => onSettingCard(item)}

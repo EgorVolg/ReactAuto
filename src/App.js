@@ -23,7 +23,8 @@ export const App = () => {
   };
 
   const onSettingCard = (item) => {
-console.log(item)
+    const newItems = items.map((el) => (el.id === item.id ? item : el));
+    setItems(newItems);
   };
 
   const onSearch = (e) => {
