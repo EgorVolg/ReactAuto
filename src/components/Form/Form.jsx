@@ -2,21 +2,30 @@ import React from "react";
 import styles from "./../Form/Form.module.scss";
 
 export const Form = ({
-  name,
-  id,
-  model,
-  year,
-  color,
-  price,
-  onVisible,
+  formState,
+  setFormState,
   formVisible,
+  onClickVisible,
+  onSettingCard,
+  onClickItem,
+  item,
 }) => {
+  const onClickX = () => {
+    onClickVisible(!formVisible);
+    onClickItem();
+  };
+  const onSaveClick = (e) => {
+    onClickVisible(!formVisible);
+    e.preventDefault();
+    return onSettingCard(item);
+  };
+
   return (
-    <div
+    <form
       className={styles.form}
       style={{ display: `${formVisible ? "block" : "none"}` }}
     >
-      <div className={styles.buttoncontainer} onClick={onVisible}>
+      <div className={styles.buttoncontainer} onClick={onClickX}>
         <svg
           width="25"
           height="25"
@@ -41,25 +50,38 @@ export const Form = ({
       </div>
 
       <p>
-        Марка:{" "}
+        Марка:
         <strong>
-          <input placeholder="Марка" />
+          <input
+            placeholder={item.name}
+            value={item.name}
+            onChange={(e) => setFormState(e.target.value)}
+          />
         </strong>
       </p>
-      <p>Id: {id} </p>
       <p>
-        Модель: <input placeholder="Модель" />
+        Модель:{" "}
+        <input
+          placeholder={item.model}
+          value={item.model}
+          onChange={(e) => setFormState(e.target.value)}
+        />
       </p>
-      <p>Год выпуска: {year}</p>
-      <p>Цвет: {color}</p>
       <div>
         <p>
-          Стоимость: <input placeholder="Cтоимость" />
+          Стоимость:{" "}
+          <input
+            placeholder={item.price}
+            value={item.price}
+            onChange={(e) => setFormState(e.target.value)}
+          />
         </p>
       </div>
       <div className={styles.saveButtonContainer}>
-        <button className={styles.saveButton}>Сохранить</button>
+        <button className={styles.saveButton} onClick={onSaveClick}>
+          Сохранить
+        </button>
       </div>
-    </div>
+    </form>
   );
 };

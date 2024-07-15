@@ -6,11 +6,7 @@ import { CardList } from "./components/CardList/CardList";
 export const App = () => {
   const [items, setItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
-  const [sortId, setSortId] = React.useState({
-    name: "По стоимости (ниже)",
-    sort: "price",
-  });
-  const [formVisible, setFormVisible] = React.useState(false);
+  const [sortId, setSortId] = React.useState({});
 
   React.useEffect(() => {
     async function fetchData() {
@@ -22,20 +18,16 @@ export const App = () => {
     fetchData();
   }, []);
 
-  // const onAddToCard = (obj) => {
-  //   return setItems((prev) => [...prev, obj]);
-  // };
-
   const onRemoveCard = (id) => {
     return setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const onSearch = (e) => {
-    setSearchValue(e.target.value);
+  const onSettingCard = (item) => {
+console.log(item)
   };
 
-  const onVisible = () => {
-    setFormVisible(!formVisible);
+  const onSearch = (e) => {
+    setSearchValue(e.target.value);
   };
 
   const sortItems = (a, b) => {
@@ -58,19 +50,17 @@ export const App = () => {
 
   return (
     <div className="App">
-      <body className={styles.body}>
+      <div className={styles.body}>
         <CardList
           items={items.sort(sortItems)}
+          onRemoveCard={onRemoveCard}
           searchValue={searchValue}
           onSearch={onSearch}
           sortId={sortId}
           setSortId={setSortId}
-          onVisible={onVisible}
-          formVisible={formVisible}
-          setFormVisible={setFormVisible}
-          onRemoveCard={onRemoveCard}
+          onSettingCard={onSettingCard}
         />
-      </body>
+      </div>
     </div>
   );
 };

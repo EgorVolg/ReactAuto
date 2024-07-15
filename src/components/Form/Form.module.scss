@@ -1,5 +1,5 @@
 .form {
-  position: relative;
+  position: absolute;
   border: 1px solid #e0a85e52;
   background-color: #973131;
   padding: 30px;
@@ -14,10 +14,11 @@
   }
 
   strong {
-    color: white;
+    color: wheat;
   }
 
   p {
+    display: flex;
     margin: 5px;
     color: wheat;
   }

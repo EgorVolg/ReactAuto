@@ -1,6 +1,6 @@
 * {
   margin: 0;
- }
+}
 
 .App-header {
   min-height: 10vh;
@@ -10,4 +10,7 @@
 body {
   background-color: #973131;
   min-height: 100vh;
+  ::placeholder {
+    color: rgba(245, 222, 179, 0.473);
+  }
 }

@@ -10,12 +10,26 @@ export const CardList = ({
   onSearch,
   sortId,
   setSortId,
-  setFormVisible,
-  formVisible,
-  onVisible,
   onRemoveCard,
+  onSettingCard,
 }) => {
   const [open, setOpen] = React.useState(false);
+
+  const [formVisible, setFormVisible] = React.useState(false);
+
+  const [formState, setFormState] = React.useState({
+    name: "Марка",
+    model: "Moдель",
+    price: "Стоимость",
+  });
+
+  const onClickVisible = () => {
+    setFormVisible(!formVisible);
+  };
+
+  const onClickItem = (item) => {
+    return setFormState(item);
+  };
 
   const renderItems = () => {
     const filterItems = items.filter((item) =>
@@ -34,7 +48,8 @@ export const CardList = ({
         price={item.price}
         {...items}
         formVisible={formVisible}
-        onVisible={onVisible}
+        onClickVisible={() => onClickVisible(item)}
+        onClickItem={() => onClickItem(item)}
       />
     ));
   };
@@ -45,15 +60,16 @@ export const CardList = ({
         <div className={styles.search}>
           <img src="./search.svg" alt="search" />
           <input placeholder="Найти" onChange={onSearch} value={searchValue} />
-          {/* <div className={styles.addCardButton}>
-            <button onClick={onVisible}>Добавить авто</button>
-          </div> */}
         </div>
         <Form
-          items={items}
-          onVisible={onVisible}
           formVisible={formVisible}
           setFormVisible={setFormVisible}
+          item={formState}
+          onClickVisible={onClickVisible}
+          formState={formState}
+          setFormState={setFormState}
+          onSettingCard={(item) => onSettingCard(item)}
+          onClickItem={(item) => onClickItem(item)}
         />
         <Sort
           open={open}

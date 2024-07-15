@@ -1,11 +1,28 @@
 import React from "react";
 import styles from "./Card.module.scss";
 
-export const Card = ({ name, id, model, year, color, price, onRemoveCard }) => {
+export const Card = ({
+  name,
+  id,
+  model,
+  year,
+  color,
+  price,
+  onRemoveCard,
+  onClickVisible,
+  onClickItem,
+}) => {
+  const openFormFunc = (item) => {
+    onClickItem(item)
+    onClickVisible(item)
+  }
   return (
     <div className={styles.item}>
       <div className={styles.buttoncontainer}>
-        <div className={styles.settingCardSvg}>
+        <div
+          className={styles.settingCardSvg}
+          onClick={openFormFunc}
+        >
           <svg
             width="25"
             height="25"
@@ -29,7 +46,10 @@ export const Card = ({ name, id, model, year, color, price, onRemoveCard }) => {
             />
           </svg>
         </div>
-        <div className={styles.removeCardSvg} onClick={()=> onRemoveCard(id)}>
+        <div
+          className={styles.removeCardSvg}
+          onClick={(id) => onRemoveCard(id)}
+        >
           <svg
             width="25"
             height="25"
@@ -67,7 +87,7 @@ export const Card = ({ name, id, model, year, color, price, onRemoveCard }) => {
         Год выпуска: <b>{year}</b>
       </p>
       <p>
-        Цвет: <b>{color}</b>
+        Цвет: <b style={{ color: `${color}` }}>{color}</b>
       </p>
       <div>
         <p>
