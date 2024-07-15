@@ -23,8 +23,6 @@ export const CardList = ({
     price: "Стоимость",
   });
 
-
-
   const onClickItem = (item) => {
     setFormState(item);
     setFormVisible(!formVisible);
@@ -35,20 +33,26 @@ export const CardList = ({
       item.name.toLowerCase().includes(searchValue.trim().toLowerCase())
     );
 
-    return filterItems.map((item, index) => (
-      <Card
-        key={index}
-        name={item.name}
-        id={item.id}
-        model={item.model}
-        year={item.year}
-        color={item.color}
-        price={item.price}
-        formVisible={formVisible}
-        onClickItem={() => onClickItem(item)}
-        onRemoveCard={() => onRemoveCard(item.id)}
-      />
-    ));
+    if (filterItems.length > 0) {
+     return filterItems.map((item, index) => (
+        <Card
+          key={index}
+          name={item.name}
+          id={item.id}
+          model={item.model}
+          year={item.year}
+          color={item.color}
+          price={item.price}
+          formVisible={formVisible}
+          onClickItem={() => onClickItem(item)}
+          onRemoveCard={() => onRemoveCard(item.id)}
+        />
+      ));
+    }
+
+    if (filterItems.length <= 0) {
+     return <h1>Машин нет !</h1>
+    }
   };
 
   return (

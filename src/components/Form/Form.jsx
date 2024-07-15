@@ -16,19 +16,34 @@ export const Form = ({
   };
 
   const onChangeName = (e) => {
-    setFormState((prev) => {
-      return { ...prev, name: e.target.value };
-    });
+    if (e.target.value.length < 15) {
+      return setFormState((prev) => {
+        return { ...prev, name: e.target.value };
+      });
+    }
+    if (e.target.value.length > 15) {
+      return "";
+    }
   };
   const onChangeModel = (e) => {
-    setFormState((prev) => {
-      return { ...prev, model: e.target.value };
-    });
+    if (e.target.value.length < 15) {
+      return setFormState((prev) => {
+        return { ...prev, model: e.target.value };
+      });
+    }
+    if (e.target.value.length > 15) {
+      return "";
+    }
   };
   const onChangePrice = (e) => {
-    setFormState((prev) => {
-      return { ...prev, price: e.target.value };
-    });
+    if (e.target.value.length < 15) {
+      return setFormState((prev) => {
+        return { ...prev, price: e.target.value };
+      });
+    }
+    if (e.target.value.length > 15) {
+      return "";
+    }
   };
 
   return (
